@@ -1,63 +1,74 @@
 <!DOCTYPE html>
 <html ng-app="beginnerApp">
 <head>
-	<title>Learning AngularJS</title>
+  <!-- added viewport to ensure proper rendering and touch zooming for (mobile)-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Prudent Customer Database</title>
+<!-- 	<link rel="stylesheet" href="css/normalize.css">
+	  <link rel="stylesheet" href="css/style.css">
+	  <link rel="stylesheet" href="css/bootstrap.min.css">
+	  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	  <link rel="stylesheet" href="assets/css/docs.min.css"> -->
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
 </head>
-<body>
+<body class="container">
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Prudent IT</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+  </div>
+       <div class="col-md-3 top-buffer">
+          <ul class="list-group">
+            <li class="list-group-item">
+            <a href="#/addIndClient">
+              <span class="glyphicon glyphicon-plus-sign"> Add_Individual_Client</span>
+            </a>
+            </li>
+            <li class="list-group-item">
+            <a href="#/addBizClient">
+              <span class="glyphicon glyphicon-plus-sign"> Add_Business_Client</span>
+            </a>
+            </li>
+            <li class="list-group-item">
+            <a href="#/customers"
+              <span class="glyphicon glyphicon-list-alt"> All_Clients</span>
+            </a>
+            </li>
+          </ul>
+        </div><!-- /.col-sm-4 -->
 	<div>
 			<!-- Placeholder for views -->
 			<div ng-view=""></div>
 	</div>
+  
+	<!-- FOOTER -->
+     <div class="panel-footer navbar-fixed-bottom">
+      <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2014 Prudent Accounting Services, LLC & Prudent Insurance Brokerage, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </footer>
+    </div>
 
-	<script src="Scripts/angular.js"></script>
-    <script src="Scripts/angular-route.js"></script>
-
-	<script>
-		var beginnerApp = angular.module('beginnerApp', ['ngRoute']);
-
-		beginnerApp.config(function ($routeProvider){
-			$routeProvider
-			.when('/view1',
-				{
-					controller: 'SimpleController',
-					templateUrl: 'Partials/View1.html'
-				})
-			.when('/view2', 
-				{	
-					controller: 'SimpleController',
-					templateUrl: 'Partials/View2.html'
-				})
-			.otherwise({ redirectTo: '/view1'});
-		});
-
-		beginnerApp.factory('simpleFactory', function(){
-			var customers = [
-				{ name: 'John Smith', city: 'Phoneix' }, 
-				{ name: 'John Doe', city: 'New York' }, 
-				{ name: 'Jane Doe', city: 'San Fransico'},
-				{ name: 'Walter Sams', city: 'Altanta' }
-			];
-
-			var factory = {};
-			factory.getCustomers = function(){
-				return customers;
-			};
-
-			return factory;
-		});
-
-		beginnerApp.controller('SimpleController', function ($scope, simpleFactory){
-			$scope.customers= [];
-
-			init();
-
-			function init(){
-				$scope.customers = simpleFactory.getCustomers();
-			}
-			$scope.addCustomer = function(){
-				$scope.customers.push({name: $scope.newCustomer.name, city: $scope.newCustomer.city});
-			}
-		});
-	</script>
+	  <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="assets/js/docs.min.js"></script>
+    <script src="controllers/customers.js"></script>
 </body>
 </html>

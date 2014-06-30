@@ -1,0 +1,26 @@
+<div class="col-md-9 jumbotron">
+	<h2>Customer</h2>
+	Filter:
+	<br />
+	<input type="text" ng-model="filter.name" />
+	<br /><br />
+
+	<table class="table table-striped">
+		<tr>
+          <th>Name</th>
+          <th>City</th>
+          <th>Client Type</th>
+          <th>Actions</th>
+        </tr>
+		<tr ng-repeat="cust in customers | filter:filter.name | orderBy:'city'">
+			<td>{{cust.firstName}} {{cust.lastName}}</td>
+			<td>{{cust.city}}</td>
+			<td>{{cust.clientType}}</td>
+			<td><a href="" ng-click="removeCustomer(cust)">
+				<span class="glyphicon glyphicon-trash"/>
+			</a></td>
+		</tr>
+	</table>
+
+	<button ng-click="getClients()">Get Clients</button>
+</div>
